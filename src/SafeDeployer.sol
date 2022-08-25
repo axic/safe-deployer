@@ -22,6 +22,11 @@ interface IGnosisSafeProxyFactory {
     ) external returns (address proxy);
 }
 
+interface IOwnerManager {
+    function getThreshold() external view returns (uint256);
+    function getOwners() external view returns (address[] memory);
+}
+
 library SafeDeployer {
     function deploy(address[] memory owners, uint256 threshold) internal returns (address safe) {
         // Values of Safe 1.3.0.
@@ -47,5 +52,8 @@ library SafeDeployer {
             )),
             nonce
         );
+
+        // Add safety check.
+        require(IOwnerManager(safe).getThreshold() == threshold);
     }
 }

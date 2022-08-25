@@ -3,8 +3,7 @@ pragma solidity >=0.8.0;
 
 import "forge-std/Test.sol";
 
-import "../src/SafeDeployer.sol";
-import "../src/SafeDeployerFrontend.sol";
+import { SafeDeployerFrontend } from "../src/SafeDeployerFrontend.sol";
 
 interface IOwnerManager {
     function getThreshold() external view returns (uint256);
